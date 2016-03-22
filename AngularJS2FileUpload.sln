@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25029.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8471BB63-C4E1-47CB-AE83-217FA7D3601C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D6C0D7B0-4FA8-44F8-9316-B8995792C5D8}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AngularJS2FileUpload", "src\AngularJS2FileUpload\AngularJS2FileUpload.xproj", "{DBD250D8-8A64-4A26-9ABA-B66D6EE34441}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DBD250D8-8A64-4A26-9ABA-B66D6EE34441}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBD250D8-8A64-4A26-9ABA-B66D6EE34441}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBD250D8-8A64-4A26-9ABA-B66D6EE34441}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBD250D8-8A64-4A26-9ABA-B66D6EE34441}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DBD250D8-8A64-4A26-9ABA-B66D6EE34441} = {8471BB63-C4E1-47CB-AE83-217FA7D3601C}
+	EndGlobalSection
+EndGlobal
