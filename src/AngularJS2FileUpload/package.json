@@ -1,17 +1,5 @@
 {
-	"version": "0.0.1",
-	"name": "angular2-uploader",
-	"description": "angular uploader for angular2",
 	"author": "Quast Datentechnik",
-	"private": true,
-	"scripts": {
-		"start": "concurrently \"npm run tsc:w\" \"npm run lite\" ",
-		"tsc": "tsc",
-		"tsc:w": "tsc -w",
-		"lite": "lite-server",
-		"typings": "typings",
-		"postinstall": "typings install"
-	},
 	"dependencies": {
 		"angular2": "2.0.0-beta.11",
 		"es6-promise": "3.1.2",
@@ -21,6 +9,7 @@
 		"systemjs": "0.19.24",
 		"zone.js": "0.6.5"
 	},
+	"description": "angular uploader for angular2",
 	"devDependencies": {
 		"concurrently": "2.0.0",
 		"lite-server": "2.1.0",
@@ -39,5 +28,16 @@
 		"gulp-clang-format": "1.0.23",
 		"clang-format": "1.0.36",
 		"gulp-ddescribe-iit": "1.3.0"
-	}
+	},
+	"name": "angular2-uploader",
+	"private": true,
+	"scripts": {
+		"start": "concurrently \"npm run tsc:w\" \"npm run lite\" ",
+		"tsc": "tsc",
+		"tsc:w": "tsc -w",
+		"lite": "lite-server",
+		"typings": "typings",
+		"postinstall": "typings install"
+	},
+	"version": "0.0.1"
 }
