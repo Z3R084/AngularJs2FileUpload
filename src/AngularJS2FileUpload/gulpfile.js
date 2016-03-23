@@ -60,7 +60,7 @@ gulp.task( 'check-format', function () {
 gulp.task( 'enforce-format', function () {
 	return doCheckFormat().on( 'warning', function ( e ) {
 		console.log( 'ERROR: You forgot to run clang-format on your change.' );
-		console.log( 'See' );
+		console.log( 'See ya!' );
 		process.exit( 1 );
 	} );
 } );
@@ -80,7 +80,10 @@ gulp.task( 'clean:demo-cache', function () {
 } );
 
 gulp.task( 'copy:polyfills-demo', function () {
-	gulp.src( './node_modules/angular2/bundles/angular2-polyfills.js' ).pipe( gulp.dest( './demo/dist/lib/' ) );
+	gulp.src( [
+		'./node_modules/angular2/bundles/angular2-polyfills.js',
+		'./node_modules/bootstrap/dist/css/bootstrap.css'
+	] ).pipe( gulp.dest( './demo/dist/lib/' ) );
 } );
 
 gulp.task( 'build:demo', function ( done ) {
