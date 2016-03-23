@@ -12,23 +12,25 @@ module.exports = {
 	resolve: {
 		extensions: ['', '.ts', '.js']
 	},
-	devtool: 'eval',
+	devtool: 'source-map',
 	module: {
 		loaders: [
 			{
-				test: /\.ts$/,
-				loader: 'ts-loader'
+				test: /\.ts/,
+				loader: 'ts-loader',
+				exclude: /node_modules/
 			}
 		]
 	},
 	plugins: [
+		//new webpack.optimize.CommonsChunkPlugin( /* chunkNamej=*/"vendor", /* filename=*/"./vendor.bundle.js" ),
 		new HtmlWebpackPlugin( {
 			template: './demo/index.html',
 			inject: 'body'
 		} )
 	],
 	devServer: {
-		contentBade: './demo/dist',
+		contentBase: './demo/dist',
 		stats: {
 			modules: false,
 			cached: false,
