@@ -23,20 +23,22 @@ System.register(['angular2/core', './file-uploader'], function(exports_1, contex
         execute: function() {
             QdtUploader = (function () {
                 function QdtUploader() {
-                    this.fileUploader = new file_uploader_1.FileUploader();
+                    this.fileUploader = new file_uploader_1.FileUploader({ url: this.url });
                     this.files = [];
                 }
                 QdtUploader.prototype.changeEvent = function ($event) {
                     this.fileUploader.addToQueue($event.target.files);
                     //console.log( $event.target.files );
                 };
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', String)
+                ], QdtUploader.prototype, "url", void 0);
                 QdtUploader = __decorate([
                     core_1.Component({
                         selector: 'qdt-uploader',
-                        template: '<div><input type="file" id="fileUpload" multiple class="btn btn-default" (change)="changeEvent( $event )" /></div>' +
-                            '<div *ngFor="#file of fileUploader.queue" style="margin-top: 20px; border-bottom-color: antiquewhite; border-bottom-style: double;">' +
-                            '<div><span>{{ file._file.name }}</span></div><div style="float: right;"><span>{{ file._file.humanSize }}</span></div>' +
-                            '</div>'
+                        styles: ["\n\t\t.uploader {\n\t\t\twidth: 90%;\n\t\t\tmargin: 1em;\n\t\t\tborder-collapse: separate;\n\t\t\tborder-spacing: 0 6px;\n\t\t}\n\t\t.uploader tr {\n\t\t\tcursor: pointer;\n\t\t}\n\t\t.uploader tr:hover td {\n\t\t\tbackground-color: #DDD;\n\t\t\tcolor: #607D8B;\n\t\t}\n\t\t.uploader tr td {\n\t\t\tbackground-color: #EEE;\t\t\t\t\n\t\t\tpadding: .5em;\n\t\t}\n\t\t.uploader tr td:first-child {\n\t\t\tborder-radius: 5px 0 0 5px;\n\t\t}\n\t\t.uploader tr td:last-child {\n\t\t\tborder-radius: 0 5px 5px 0;\n\t\t}\n\t"],
+                        template: "\n\t\t<div><input type=\"file\" id=\"fileUpload\" multiple class=\"btn btn-default\" (change)=\"changeEvent( $event )\" /></div>\n\t\t<table class=\"uploader\">\n\t\t\t<tr *ngFor=\"#file of fileUploader.queue\">\n\t\t\t\t<td>{{ file._file.name }}</td>\n\t\t\t\t<td>{{ file._file.humanSize }}</td>\n\t\t\t\t<td>\n\t\t\t\t\t<button class=\"btn btn-primary btn-xs\" (click)=\"file.upload()\"><span class=\"glyphicon glyphicon-upload\"></span> Upload</button>&nbsp;\n\t\t\t\t\t<button class=\"btn btn-danger btn-xs\" (click)=\"file.remove()\"><span class=\"glyphicon glyphicon-trash\"></span> Delete</button>\n\t\t\t\t</td>\n\t\t\t</tr>\n\t\t</table>\n\t"
                     }), 
                     __metadata('design:paramtypes', [])
                 ], QdtUploader);

@@ -6,7 +6,7 @@ import {QdtUploader} from './uploader/uploader';
 	directives: [QdtUploader],
 	template: `
 		<h1>Nur ein Test</h1>
-		<qdt-uploader></qdt-uploader>
+		<qdt-uploader [url]="'Home/Upload'"></qdt-uploader>
 	`
 })
 

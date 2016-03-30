@@ -28,7 +28,7 @@ System.register(['angular2/core', './uploader/uploader'], function(exports_1, co
                     core_1.Component({
                         selector: 'my-app',
                         directives: [uploader_1.QdtUploader],
-                        template: "\n\t\t<h1>Nur ein Test</h1>\n\t\t<qdt-uploader></qdt-uploader>\n\t"
+                        template: "\n\t\t<h1>Nur ein Test</h1>\n\t\t<qdt-uploader [url]=\"'Home/Upload'\"></qdt-uploader>\n\t"
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);

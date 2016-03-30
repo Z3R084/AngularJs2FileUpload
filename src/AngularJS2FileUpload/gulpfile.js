@@ -90,6 +90,7 @@ gulp.task( 'copy:polyfills-demo', function () {
 		'./node_modules/rxjs/bundles/Rx.js',
 		'./node_modules/angular2/bundles/angular2.dev.js'
 	] ).pipe( gulp.dest( './demo/dist/lib/' ) );
+	gulp.src( ['./node_modules/bootstrap/dist/fonts/**/*'] ).pipe( gulp.dest( './demo/dist/fonts' ) );
 } );
 
 gulp.task( 'build:demo', function ( done ) {

@@ -6,11 +6,20 @@ System.register([], function(exports_1, context_1) {
         setters:[],
         execute: function() {
             FileItem = (function () {
-                function FileItem(file) {
+                function FileItem(file, _uploader) {
                     this.file = file;
+                    this._uploader = _uploader;
+                    this.alias = 'file';
+                    this.method = 'POST';
+                    this.url = '/';
                     this._file = file;
                     this._file['humanSize'] = this.getHumanFileSize(this._file.size);
                 }
+                FileItem.prototype.upload = function () {
+                };
+                FileItem.prototype.remove = function () {
+                    this._uploader.removeFromQueue(this);
+                };
                 FileItem.prototype.getHumanFileSize = function (size) {
                     var sizes = ['n/a', 'bytes', 'KiB', 'MiB', 'GiB'];
                     var i = Math.floor(Math.log(size) / Math.log(1024));

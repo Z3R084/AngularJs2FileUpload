@@ -10,9 +10,12 @@ System.register(['./file-item'], function(exports_1, context_1) {
             }],
         execute: function() {
             FileUploader = (function () {
-                function FileUploader() {
+                function FileUploader(options) {
+                    this.options = options;
                     this.queue = [];
                     this.filters = [];
+                    this.url = options.url;
+                    console.log(this.url);
                 }
                 FileUploader.prototype.addToQueue = function (files) {
                     var _this = this;
@@ -23,10 +26,25 @@ System.register(['./file-item'], function(exports_1, context_1) {
                     }
                     var addedFileItems = [];
                     list.map(function (some) {
-                        var fileItem = new file_item_1.FileItem(some);
+                        var fileItem = new file_item_1.FileItem(some, _this);
                         //addedFileItems.push(some);
                         _this.queue.push(fileItem);
                     });
+                };
+                FileUploader.prototype.removeFromQueue = function (file) {
+                    var index = this.queue.indexOf(file);
+                    this.queue.splice(index, 1);
+                };
+                FileUploader.prototype.uploadItem = function (file) {
+                    var index = this.queue.indexOf(file);
+                    this._xhrTransport(file);
+                };
+                FileUploader.prototype._xhrTransport = function (file) {
+                    var xhr = file._xhr = new XMLHttpRequest();
+                    var form = new FormData();
+                    form.append(file.alias, file._file, file._file.name);
+                    xhr.open(file.method, file.url, true);
+                    xhr.send(form);
                 };
                 return FileUploader;
             }());
