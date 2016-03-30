@@ -1,5 +1,5 @@
 ﻿import {Component} from 'angular2/core';
-import {QdtUploader} from '../../src/uploader/uploader';
+import {QdtUploader} from './uploader/uploader';
 
 @Component( {
 	selector: 'my-app',

@@ -82,19 +82,32 @@ gulp.task( 'clean:demo-cache', function () {
 gulp.task( 'copy:polyfills-demo', function () {
 	gulp.src( [
 		'./node_modules/angular2/bundles/angular2-polyfills.js',
-		'./node_modules/bootstrap/dist/css/bootstrap.css'
+		'./node_modules/bootstrap/dist/css/bootstrap.css',
+		'./node_modules/es6-shim/es6-shim.min.js',
+		'./node_modules/systemjs/dist/system-polyfills.js',
+		'./node_modules/angular2/es6/dev/src/testing/shims_for_IE.js',
+		'./node_modules/systemjs/dist/system.src.js',
+		'./node_modules/rxjs/bundles/Rx.js',
+		'./node_modules/angular2/bundles/angular2.dev.js'
 	] ).pipe( gulp.dest( './demo/dist/lib/' ) );
 } );
 
 gulp.task( 'build:demo', function ( done ) {
-	var config = Object.create( webpackDemoConfig );
-	config.plugins = config.plugins.concat( new webpack.optimize.UglifyJsPlugin() );
+	gulp.src( ['./src/**/*.js'] ).pipe( gulp.dest( './demo/dist/app' ) );
+	gulp.src( ['./demo/index.html'] ).pipe( gulp.dest( './demo/dist' ) );
+	gulp.src( ['./demo/src/**/*.js'] ).pipe( gulp.dest( './demo/dist/app' ) );
+	//var config = Object.create( webpackDemoConfig );
+	//config.plugins = config.plugins.concat( new webpack.optimize.UglifyJsPlugin() );
 
-	webpack( config, webpackCallBack( 'build:demo', done ) );
+	//webpack( config, webpackCallBack( 'build:demo', done ) );
 } );
 
 gulp.task( 'demo-push', function () {
 	return gulp.src( PATHS.demoDist ).pipe( ghPages() );
+} );
+
+gulp.task( 'dev-demo', function () {
+	gulp.src( ['./src/**/*.ts'] ).pipe( gulp.dest( './demo/src' ) );
 } );
 
 gulp.task( 'deploy-demo', function ( done ) {
