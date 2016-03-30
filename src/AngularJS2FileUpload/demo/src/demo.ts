@@ -1,4 +1,4 @@
 ﻿import {bootstrap} from 'angular2/platform/browser';
-import {QdtUploader} from '../../src/uploader/uploader';
+import {AppComponent} from './app.component';
 
-bootstrap(QdtUploader);
+bootstrap(AppComponent);
