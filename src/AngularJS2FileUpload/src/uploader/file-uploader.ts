@@ -12,10 +12,10 @@ export class FileUploader {
 
 		let addedFileItems: any[] = [];
 
-		list.map(some => {
-			let fileItem = new FileItem(some);
+		list.map( some => {
+			let fileItem = new FileItem( some );
 			//addedFileItems.push(some);
-			this.queue.push(fileItem);
+			this.queue.push( fileItem );
 		});
 	}
 }

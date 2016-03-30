@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"module": "commonjs",
+		"module": "system",
 		"moduleResolution": "node",
 		"noImplicitAny": false,
 		"removeComments": false,
