@@ -3,9 +3,9 @@ import {FileItem} from './file-item';
 export class FileUploader {
 	public queue: Array<any> = [];
 	public filters: Array<any> = [];
-	public url: string;
+	public url: string = '/';
 
-	constructor(public options: any) {
+	constructor(public options?: any) {
 		this.url = options.url;
 		console.log(this.url);
 	}
@@ -31,7 +31,7 @@ export class FileUploader {
 	}
 
 	public uploadItem(file: FileItem): void {
-		let index = this.queue.indexOf(file);
+		//let index = this.queue.indexOf(file);
 		this._xhrTransport(file);
 	}
 

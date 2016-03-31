@@ -14,8 +14,10 @@ System.register([], function(exports_1, context_1) {
                     this.url = '/';
                     this._file = file;
                     this._file['humanSize'] = this.getHumanFileSize(this._file.size);
+                    this.url = _uploader.url;
                 }
                 FileItem.prototype.upload = function () {
+                    this._uploader.uploadItem(this);
                 };
                 FileItem.prototype.remove = function () {
                     this._uploader.removeFromQueue(this);

@@ -10,10 +10,11 @@ export class FileItem {
 	constructor(private file: any, private _uploader: FileUploader) {
 		this._file = file;
 		this._file['humanSize'] = this.getHumanFileSize(this._file.size);
+		this.url = _uploader.url;
 	}
 
 	public upload(): void {
-		
+		this._uploader.uploadItem(this);
 	}
 
 	public remove(): void {

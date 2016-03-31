@@ -14,6 +14,7 @@ System.register(['./file-item'], function(exports_1, context_1) {
                     this.options = options;
                     this.queue = [];
                     this.filters = [];
+                    this.url = '/';
                     this.url = options.url;
                     console.log(this.url);
                 }
@@ -36,7 +37,7 @@ System.register(['./file-item'], function(exports_1, context_1) {
                     this.queue.splice(index, 1);
                 };
                 FileUploader.prototype.uploadItem = function (file) {
-                    var index = this.queue.indexOf(file);
+                    //let index = this.queue.indexOf(file);
                     this._xhrTransport(file);
                 };
                 FileUploader.prototype._xhrTransport = function (file) {

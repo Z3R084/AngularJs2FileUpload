@@ -1,4 +1,4 @@
-import {Component, Input} from 'angular2/core';
+import {Component, Input, OnInit} from 'angular2/core';
 import {FileUploader} from './file-uploader';
 
 @Component( {
@@ -34,6 +34,7 @@ import {FileUploader} from './file-uploader';
 			<tr *ngFor="#file of fileUploader.queue">
 				<td>{{ file._file.name }}</td>
 				<td>{{ file._file.humanSize }}</td>
+				<td>{{ url }}</td>
 				<td>
 					<button class="btn btn-primary btn-xs" (click)="file.upload()"><span class="glyphicon glyphicon-upload"></span> Upload</button>&nbsp;
 					<button class="btn btn-danger btn-xs" (click)="file.remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
@@ -43,11 +44,16 @@ import {FileUploader} from './file-uploader';
 	`
 })
 
-export class QdtUploader {
+export class QdtUploader implements OnInit {
 	@Input()
-	url: string;
-	private fileUploader: FileUploader = new FileUploader({ url: this.url });
+	public url: string;
+	private fileUploader: FileUploader;
 	private files: Array<any> = [];
+
+	ngOnInit() {
+		this.fileUploader = new FileUploader({ url: this.url });
+	}
+
 	changeEvent($event): void {
 		this.fileUploader.addToQueue($event.target.files);
 		//console.log( $event.target.files );
