@@ -36,12 +36,19 @@ import {FileUploader} from './file-uploader';
 				<td>{{ file._file.humanSize }}</td>
 				<td>
 					<div class="progress" style="margin-bottom: 0; width: 200px;">
-						<div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+						<div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': file.progress + '%' }"></div>
 					</div>
 				</td>
 				<td>
 					<button class="btn btn-primary btn-xs" (click)="file.upload()"><span class="glyphicon glyphicon-upload"></span> Upload</button>&nbsp;
 					<button class="btn btn-danger btn-xs" (click)="file.remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<div class="progress" style="width: 100%;">
+						<div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': fileUploader.progress + '%' }"></div>
+					</div>
 				</td>
 			</tr>
 		</table>

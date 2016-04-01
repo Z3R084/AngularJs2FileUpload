@@ -6,6 +6,8 @@ export class FileItem {
 	public method: string = 'POST';
 	public _xhr: XMLHttpRequest;
 	public url: string = '/';
+	public isUploaded: boolean = false;
+	public progress: number = 0;
 
 	constructor(private file: any, private _uploader: FileUploader) {
 		this._file = file;
@@ -19,6 +21,10 @@ export class FileItem {
 
 	public remove(): void {
 		this._uploader.removeFromQueue(this);
+	}
+
+	public onProgress(progress: number) {
+		this.progress = progress;
 	}
 
 	private getHumanFileSize(size: number): string {

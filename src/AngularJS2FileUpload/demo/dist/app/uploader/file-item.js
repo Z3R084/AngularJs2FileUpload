@@ -12,6 +12,8 @@ System.register([], function(exports_1, context_1) {
                     this.alias = 'file';
                     this.method = 'POST';
                     this.url = '/';
+                    this.isUploaded = false;
+                    this.progress = 0;
                     this._file = file;
                     this._file['humanSize'] = this.getHumanFileSize(this._file.size);
                     this.url = _uploader.url;
@@ -21,6 +23,9 @@ System.register([], function(exports_1, context_1) {
                 };
                 FileItem.prototype.remove = function () {
                     this._uploader.removeFromQueue(this);
+                };
+                FileItem.prototype.onProgress = function (progress) {
+                    this.progress = progress;
                 };
                 FileItem.prototype.getHumanFileSize = function (size) {
                     var sizes = ['n/a', 'bytes', 'KiB', 'MiB', 'GiB'];

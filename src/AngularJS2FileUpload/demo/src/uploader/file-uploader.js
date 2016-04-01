@@ -15,6 +15,8 @@ System.register(['./file-item'], function(exports_1, context_1) {
                     this.queue = [];
                     this.filters = [];
                     this.url = '/';
+                    this.removeAfterUpload = false;
+                    this.progress = 0;
                     this.url = options.url;
                     console.log(this.url);
                 }
@@ -40,12 +42,54 @@ System.register(['./file-item'], function(exports_1, context_1) {
                     //let index = this.queue.indexOf(file);
                     this._xhrTransport(file);
                 };
+                FileUploader.prototype.getNotUploadedItems = function () {
+                    return this.queue.filter(function (item) { return !item.isUploaded; });
+                };
+                FileUploader.prototype.onProgressItem = function (fileItem, progress) {
+                };
+                FileUploader.prototype.onProgressAll = function (progress) {
+                };
                 FileUploader.prototype._xhrTransport = function (file) {
+                    var _this = this;
                     var xhr = file._xhr = new XMLHttpRequest();
                     var form = new FormData();
                     form.append(file.alias, file._file, file._file.name);
+                    xhr.upload.onprogress = function (event) {
+                        var progress = Math.round(event.lengthComputable ? event.loaded * 100 / event.total : 0);
+                        _this._onProgressItem(file, progress);
+                    };
+                    xhr.upload.onload = function () {
+                        console.log('finished');
+                        _this._onCompleteItem(file, xhr.status);
+                    };
+                    xhr.onerror = function (event) {
+                        console.log(event.target);
+                    };
                     xhr.open(file.method, file.url, true);
                     xhr.send(form);
+                };
+                FileUploader.prototype._onProgressItem = function (item, progress) {
+                    var total = this._getTotalProgress(progress);
+                    this.progress = total;
+                    item.onProgress(progress);
+                    console.log('Progress: ' + progress);
+                    this.onProgressItem(item, progress);
+                    this.onProgressAll(total);
+                };
+                FileUploader.prototype._onCompleteItem = function (file, status) {
+                    file.onProgress(100);
+                    console.log('file finished');
+                };
+                FileUploader.prototype._getTotalProgress = function (value) {
+                    if (value === void 0) { value = 0; }
+                    if (this.removeAfterUpload) {
+                        return value;
+                    }
+                    var notUploaded = this.getNotUploadedItems().length;
+                    var uploaded = notUploaded ? this.queue.length - notUploaded : this.queue.length;
+                    var ratio = 100 / this.queue.length;
+                    var current = value * ratio / 100;
+                    return Math.round(uploaded * ratio + current);
                 };
                 return FileUploader;
             }());

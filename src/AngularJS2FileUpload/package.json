@@ -36,7 +36,7 @@
 	"name": "angular2-uploader",
 	"private": true,
 	"scripts": {
-		"start": "node server.js",
+		"start": "gulp dev-demo && tsc && gulp deploy-demo && node server.js",
 		"tsc": "tsc",
 		"tsc:w": "tsc -w",
 		"lite": "lite-server",
